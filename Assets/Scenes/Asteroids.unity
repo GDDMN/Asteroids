@@ -123,6 +123,37 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &327235651
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 327235652}
+  m_Layer: 0
+  m_Name: AsteroidsPool
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &327235652
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 327235651}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1595245896}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &532447869
 GameObject:
   m_ObjectHideFlags: 0
@@ -366,7 +397,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1595245896}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &1410607627
 SpriteRenderer:
@@ -460,7 +491,7 @@ MonoBehaviour:
     AccelerationPreSecs: 5
     SecondsToStop: 1.5
     Angle: 0
-    RotateSpeed: 100
+    RotateSpeed: 150
   _rigidbody: {fileID: 1410607628}
   _projectile: {fileID: 5985881197986675109, guid: ab92ec89dfa53a44696e9211f9a391e3, type: 3}
 --- !u!61 &1410607630
@@ -510,6 +541,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1595245896}
+  - component: {fileID: 1595245897}
   m_Layer: 0
   m_Name: Level
   m_TagString: Untagged
@@ -529,7 +561,23 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 327235652}
   - {fileID: 1410607626}
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1595245897
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1595245895}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff88c703faa94da499c68c460a2cfa80, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _asteroidsCount: 0
+  _asteroidsPool: {fileID: 327235652}
+  _asteroid: {fileID: 5414164446959581265, guid: 51472eb6ad6f50847898a5bec06967d1, type: 3}
