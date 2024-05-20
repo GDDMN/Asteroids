@@ -462,6 +462,7 @@ MonoBehaviour:
     Angle: 0
     RotateSpeed: 100
   _rigidbody: {fileID: 1410607628}
+  _projectile: {fileID: 5985881197986675109, guid: ab92ec89dfa53a44696e9211f9a391e3, type: 3}
 --- !u!61 &1410607630
 BoxCollider2D:
   m_ObjectHideFlags: 0

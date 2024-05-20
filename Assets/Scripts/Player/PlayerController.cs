@@ -25,6 +25,8 @@ public class PlayerController : MonoBehaviour
   [Space(10)]
 
   [SerializeField] private Rigidbody2D _rigidbody;
+  [SerializeField] private ProjectileController _projectile;
+
 
   private void Awake()
   {
@@ -34,11 +36,13 @@ public class PlayerController : MonoBehaviour
 
   private void OnEnable()
   {
-    _inputController.Enable();  
+    _inputController.Enable();
+    _inputController.Player.Shot.performed += context => Shot();
   }
 
   private void OnDisable()
   {
+    _inputController.Player.Shot.performed -= context => Shot();
     _inputController.Disable();
   }
 
@@ -78,5 +82,11 @@ public class PlayerController : MonoBehaviour
   private void SlowDown(float secondsToStop)
   {
     _data.Acceleration += -_data.Acceleration * (Time.deltaTime / secondsToStop);
+  }
+
+  private void Shot()
+  {
+    var projectile = Instantiate(_projectile, transform.position, Quaternion.identity);
+    projectile.Initialize(transform.up);
   }
 }
