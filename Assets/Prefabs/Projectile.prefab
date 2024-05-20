@@ -101,12 +101,12 @@ Rigidbody2D:
   m_UseAutoMass: 0
   m_Mass: 0.0001
   m_LinearDrag: 0
-  m_AngularDrag: 0.05
+  m_AngularDrag: 0
   m_GravityScale: 0
   m_Material: {fileID: 0}
-  m_Interpolate: 0
+  m_Interpolate: 1
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 4
 --- !u!58 &5985881197986675107
 CircleCollider2D:
@@ -138,6 +138,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _data:
     Direction: {x: 0, y: 0}
-    Speed: 1000
+    Speed: 60
     LifeTime: 3
   _rigidbody: {fileID: 5985881197986675108}

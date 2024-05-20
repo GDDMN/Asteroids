@@ -18,7 +18,7 @@ public class ProjectileController : MonoBehaviour
   public void Initialize(Vector2 direction)
   {
     _data.Direction = direction;
-    _rigidbody.velocity = _data.Direction * (_data.Speed * Time.deltaTime);
+    _rigidbody.velocity = _data.Direction * _data.Speed;
     Destroy(this.gameObject, _data.LifeTime);
   }
 }
