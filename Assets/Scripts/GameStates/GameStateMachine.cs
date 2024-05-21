@@ -70,4 +70,9 @@ public class GameStateMachine : MonoBehaviour
     activeState = allStates[currentGameState];
     activeState.Enter();
   }
+
+  public void ExitGame()
+  {
+    Application.Quit();
+  }
 }

@@ -1,5 +1,7 @@
-﻿public class MainMenuWindow : BaseWindow
+﻿using UnityEngine;
+
+public class MainMenuWindow : BaseWindow
 {
-  
+
 }
 

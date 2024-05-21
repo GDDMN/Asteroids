@@ -37,7 +37,7 @@ public class PlayerSpawner : MonoBehaviour
     OnChangeLivesValue?.Invoke(_lives);
     playerController = Instantiate(_player, SpawnPosition, Quaternion.identity);
     playerController.transform.SetParent(this.gameObject.transform);
-    playerController.OnDestroy += SpawnPlayer;
+    playerController.Actor.OnDestroy += SpawnPlayer;
   }
   
   private void GameOver()

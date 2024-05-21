@@ -27,7 +27,8 @@ public class AsteroidsSpawner : MonoBehaviour
   public void Initialize()
   {
     foreach (var asteroid in _allAsteroids)
-      Destroy(asteroid);
+      if(asteroid != null)
+        Destroy(asteroid.gameObject);
 
     _allAsteroids.Clear();
 
@@ -46,7 +47,7 @@ public class AsteroidsSpawner : MonoBehaviour
   {
     _waveNum++;
 
-    for(int i=0; i < AsteroidsVaweCount; i++)
+    for (int i=0; i < AsteroidsVaweCount; i++)
       SpawnAsteroids();
   }
 
