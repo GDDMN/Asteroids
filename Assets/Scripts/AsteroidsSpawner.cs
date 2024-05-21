@@ -1,5 +1,6 @@
 using UnityEngine;
 using System;
+using System.Collections.Generic;
 
 public class AsteroidsSpawner : MonoBehaviour
 {
@@ -13,16 +14,30 @@ public class AsteroidsSpawner : MonoBehaviour
   [SerializeField] private Transform _asteroidsPool;
   [SerializeField] private Asteroid _asteroid;
 
+  [Space(10), Header("Window")]
+  [SerializeField] private GameUIWindow _gameWindow;
+
   private int AsteroidsVaweCount => 10 + _waveNum * UnityEngine.Random.Range(2, 5);
+  private List<Asteroid> _allAsteroids = new List<Asteroid>();
 
   public event Action OnSpawnAsteroids;
   public event Action OnWaveClear;
+  public event Action<int> SendWaveCount;
 
-  private void Awake()
+  public void Initialize()
   {
+    foreach (var asteroid in _allAsteroids)
+      Destroy(asteroid);
+
+    _allAsteroids.Clear();
+
+    _waveNum = 0;
+    _asteroidsCount = 0;
+
     camera = Camera.main;
     OnSpawnAsteroids += SpawnAsteroids;
     OnWaveClear += CheckWaveValidate;
+    SendWaveCount += _gameWindow.WavesCount.ChangeValue;
 
     OnWaveClear?.Invoke();
   }
@@ -41,6 +56,7 @@ public class AsteroidsSpawner : MonoBehaviour
       return;
 
     SpawnWave();
+    SendWaveCount?.Invoke(_waveNum);
   }
 
   private void SpawnAsteroids()
@@ -49,8 +65,9 @@ public class AsteroidsSpawner : MonoBehaviour
     var asteroid = Instantiate(_asteroid, GetPosition(), Quaternion.identity);
     asteroid.Initialize();
     asteroid.OnDestroy += OnDestroyAsteroid;
-
     asteroid.transform.SetParent(_asteroidsPool);
+
+    _allAsteroids.Add(asteroid);
   }
 
   private void OnDestroyAsteroid()
