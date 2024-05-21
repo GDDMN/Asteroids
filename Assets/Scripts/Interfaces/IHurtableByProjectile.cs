@@ -1,11 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-public interface IHurtableByProjectile 
+public interface IHurtable 
 {
-  public void TakeDamage();
-
   public void Destroy();
-
 }

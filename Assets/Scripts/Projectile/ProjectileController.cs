@@ -1,16 +1,6 @@
 using UnityEngine;
-using System;
 
-[Serializable]
-public struct ProjectileData
-{
-  public Vector2 Direction;
-  public float Speed;
-  public float LifeTime;
-}
-
-
-public class ProjectileController : MonoBehaviour
+public class ProjectileController : MonoBehaviour, IProjectile
 {
   [SerializeField] private ProjectileData _data;
   [SerializeField] private Rigidbody2D _rigidbody;

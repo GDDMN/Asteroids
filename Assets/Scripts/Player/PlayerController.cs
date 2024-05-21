@@ -16,7 +16,7 @@ public struct PlayerData
   public float RotateSpeed;
 }
 
-public class PlayerController : MonoBehaviour
+public class PlayerController : MonoBehaviour, IHurtable
 {
   private InputController _inputController;
   private Transform _transform;
@@ -27,6 +27,7 @@ public class PlayerController : MonoBehaviour
   [SerializeField] private Rigidbody2D _rigidbody;
   [SerializeField] private ProjectileController _projectile;
 
+  public event Action OnDestroy;
 
   private void Awake()
   {
@@ -88,5 +89,22 @@ public class PlayerController : MonoBehaviour
   {
     var projectile = Instantiate(_projectile, transform.position, Quaternion.identity);
     projectile.Initialize(transform.up);
+  }
+
+  public void Destroy()
+  {
+    OnDestroy?.Invoke();
+    Destroy(this.gameObject);
+  }
+
+  public void OnTriggerEnter2D(Collider2D collision)
+  {
+    var hurtable = collision.GetComponent<IHurtable>();
+
+    if (hurtable != null)
+    {
+      collision.GetComponent<IHurtable>().Destroy();
+      Destroy();
+    }
   }
 }

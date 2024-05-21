@@ -1,10 +1,10 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class WrappedConponent : MonoBehaviour
 {
   private Camera camera;
+  public event Action OnDestroy;
 
   private void Awake()
   {
@@ -45,4 +45,6 @@ public class WrappedConponent : MonoBehaviour
     Vector2 position = camera.ViewportToWorldPoint(viewportPos + adjustment);
     transform.position = position;
   }
+
+
 }

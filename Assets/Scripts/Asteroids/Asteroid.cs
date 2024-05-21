@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using System;
 
@@ -12,10 +10,12 @@ public struct AsteroidData
   public float Speed;
 }
 
-public class Asteroid : MonoBehaviour
+public class Asteroid : MonoBehaviour, IHurtable
 {
   [SerializeField] private AsteroidData _data;
   [SerializeField] private Rigidbody2D _rigidbody;
+
+  public event Action OnDestroy;
 
   public void Initialize()
   {
@@ -28,5 +28,20 @@ public class Asteroid : MonoBehaviour
     _rigidbody.velocity = _data.Direction * _data.Speed;
   }
 
+  public void Destroy()
+  {
+    OnDestroy?.Invoke();
+    Destroy(this.gameObject);
+  }
 
+  private void OnTriggerEnter2D(Collider2D collision)
+  {
+    var projectile = collision.GetComponent<IProjectile>();
+
+    if (projectile != null)
+    {
+      Destroy(collision.gameObject);
+      Destroy();
+    }
+  }
 }
